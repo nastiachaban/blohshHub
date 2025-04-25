@@ -1,0 +1,16 @@
+<div style="background-color: black; height: 710px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Jockey One', sans-serif;">
+    <label style="color: white; font-size: 25px;">username</label>
+    <input [(ngModel)]="username" type="text" style="width: 300px; height: 35px; font-size: 1.2rem; margin-bottom: 20px; border-radius: 6px; padding: 8px;" />
+  
+    <label style="color: white; font-size: 25px;">password</label>
+    <input [(ngModel)]="password" type="password" style="width: 300px; height: 35px; font-size: 1.2rem; margin-bottom: 20px; border-radius: 6px; padding: 8px;" />
+  
+    <label style="color: white; font-size: 25px;">repeat password</label>
+    <input [(ngModel)]="repeatPassword" type="password" style="width: 300px; height: 35px; font-size: 1.2rem; margin-bottom: 20px; border-radius: 6px; padding: 8px;" />
+  
+    <div style="display: flex; gap: 20px;">
+      <button (click)="signup()" style="background-color: #ffffff; font-weight: bold; font-size: 25px; padding: 8px 20px; border-radius: 8px; font-family: 'Jockey One', sans-serif;" >sign up</button>
+      <button [routerLink]="'/'" style="background-color: #ffffff; font-weight: bold; font-size: 25px; padding: 8px 20px; border-radius: 8px; font-family: 'Jockey One', sans-serif;">cancel</button>
+    </div>
+  </div>
+  

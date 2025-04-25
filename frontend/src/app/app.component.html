@@ -1,0 +1,20 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jockey+One&display=swap" rel="stylesheet">
+
+<div *ngIf="isLoggedIn && showNavbar" class="navbar">
+  <div class="nav-left">
+    <button (click)="logout()" class="logout-btn">log out</button>
+  </div>
+
+  <div class="nav-center">
+    <a routerLink="/songs" routerLinkActive="active">Albums</a>
+    <a routerLink="/shows" routerLinkActive="active">Shows</a>
+    <a routerLink="/comments" routerLinkActive="active">Comments</a>
+    <a routerLink="/wordle" routerLinkActive="active">Wordle</a>
+    <a routerLink="/favourites" routerLinkActive="active">♡</a>
+
+  </div>
+</div>
+
+<router-outlet></router-outlet>

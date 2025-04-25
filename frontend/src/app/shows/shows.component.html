@@ -1,0 +1,19 @@
+
+<div class="content">
+    <div class="show-layout">
+      <div class="show-images">
+        <img src="assets/images/baby.png" alt="Left Billie image" />
+      </div>
+  
+      <div class="info-center">
+        <p class="countdown">next show in: <br> <span>{{ countdownText }}</span></p>
+        <div class="show-date">{{ nextShow?.date | date:'MMMM d' }}</div>
+        <div class="show-location">{{ nextShow?.city }}, {{ nextShow?.country }}</div>
+        <div class="show-arena">{{ nextShow?.arena }}</div>
+      </div>
+  
+      <div class="show-images">
+        <img src="assets/images/mycutie.png" alt="Right Billie image" />
+      </div>
+    </div>
+  </div>

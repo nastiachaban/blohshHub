@@ -1,0 +1,52 @@
+.content {
+  text-align: center;
+  font-family: "Jockey One", sans-serif;
+  padding: 3rem 2rem 2rem;
+  min-height: 480px;
+  margin: 25px auto; /* 👈 centers the block horizontally */
+  width: 1000px;
+
+  border: 3px dashed #7aa9c4;
+  border-radius: 10px;
+  box-shadow: 0 0 12px #7aa9c4, 0 0 24px #7aa9c4;
+  color: rgb(37, 39, 87);
+}
+
+
+  
+  .countdown {
+    font-size: 30px;
+    color: #7aa9c4;
+    margin-bottom: 1rem;
+  }
+  
+  .show-date,
+  .show-location,
+  .show-arena {
+    font-size: 30px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .show-images img {
+    width: 270px;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 0px;
+  }
+  
+  .info-center {
+    padding: 0 30px;
+    text-align: center;
+    margin: 0 2rem;
+  }
+  
+  .show-layout {
+    margin-top: 60px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    
+  }
+  
+
+  

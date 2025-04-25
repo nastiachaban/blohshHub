@@ -1,0 +1,132 @@
+.container {
+    display: flex;
+    justify-content: center; /* horizontally centers the main content */
+    align-items: center;
+    padding: 32px;
+    gap: 32px;
+    font-family: 'Jockey One', sans-serif;
+    height: 550px;
+  }
+  
+  .album-sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .album-covers {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+  
+  .album-covers img {
+    width: 130px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: all 0.3s ease;
+  }
+  
+  .album-covers img.active {
+    border-color: #000;
+  }
+  
+  .tracklist-panel {
+    flex-grow: 1;
+    border: 4px solid transparent;
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 800px;
+    min-width: 600px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .tracklist-window {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    gap: 40px;
+  }  
+  
+  .tracklist-left {
+    flex: 1;
+    max-width: 400px;
+  }
+  
+  .tracklist-left h2 {
+    margin-bottom: 16px;
+    font-size: 24px;
+  }
+  
+  .tracklist-left ol {
+    padding-left: 20px;
+    font-size: 18px;
+  }
+  
+  .album-art {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    border-radius: 0 !important; 
+  }
+  
+  .album-art img {
+    width: 140px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 0 !important; 
+  }
+  
+  .album-art img:nth-child(2) {
+    margin-right: 50px;
+    border-radius: 0 !important; 
+  }
+
+  li span {
+    transition: color 0.2s ease;
+  }
+  
+  li span:hover {
+    color: crimson;
+  }
+  .song-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 12px;
+  }
+  .gray-heart {
+    color: gray;
+    cursor: pointer;
+  }
+  
+  .red-heart {
+    color: red;
+  }
+  
+  .disabled-heart {
+    cursor: not-allowed;
+  }
+  .white-heart {
+    color: white;
+    cursor: pointer;
+  }
+  
+  button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: gray;
+    cursor: pointer;
+  }
+  
+  button.favourite {
+    color: red;
+  }
+  
+  

@@ -1,0 +1,57 @@
+<div class="wordle-wrapper">
+<div class="game-area">
+  
+    <div class="mycutie1">
+        <h3>try to guess word</h3>
+        <img
+  [src]="
+    gameWon
+      ? 'assets/images/yay.png'
+      : gameLost
+      ? 'assets/images/lol.png'
+      : 'assets/images/guess.png'
+  "
+  alt="Billie image"
+/>
+
+
+      </div>
+
+    <div class="board">
+      <div *ngFor="let guess of displayRows" class="row">
+        <span 
+          *ngFor="let letter of guess.letters; let i = index"
+          class="tile"
+          [ngStyle]="{ 'background-color': getColor(guess.feedback[i]) }"
+        >
+          {{ letter }}
+        </span>
+      </div>
+    </div>
+  
+    <div class="rules">
+      <h3>How to play 🎮</h3>
+      <p><span class="color-box green"></span> Letter is in the word and in the correct spot.</p>
+      <p><span class="color-box yellow"></span> Letter is in the word but in the wrong spot.</p>
+      <p><span class="color-box gray"></span> Letter is not in the word at all.</p>
+    </div>
+  </div>
+  
+  <div class="keyboard">
+    <div class="key-row" *ngFor="let row of keyRows">
+      <button 
+        class="key"
+        *ngFor="let key of row"
+        (click)="handleKey(key)">
+        {{ key }}
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="message" class="message">{{ message }}</div>
+
+<div class="replay-container">
+  <button class="replay-btn" (click)="resetGame()">🔁 Replay</button>
+</div>
+
+</div>

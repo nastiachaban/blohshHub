@@ -1,0 +1,43 @@
+<div class="favourites-layout">
+  <img
+    [src]="favourites.length > 0 ? 'assets/images/love.png' : 'assets/images/cry1.png'"
+    alt="Side image"
+    class="side-image"
+    style="margin-right: 20px;"
+  />
+
+  <div class="favourites-container">
+    <h2>♡ Your Favourite Songs ♡</h2>
+
+    <div class="favourite-scroll-window">
+      <div *ngIf="favourites.length > 0; else empty" class="favourite-list">
+        <div
+          class="favourite-item"
+          *ngFor="let song of favourites"
+          [ngClass]="{
+            'wwafawdwg': song.album === 'When We All Fall Asleep, Where Do We Go?',
+            'hte': song.album === 'Happier Than Ever',
+            'hmhas': song.album === 'Hit Me Hard and Soft'
+          }"
+        >
+          <div class="song-info">
+            <div class="song-title">{{ song.song_name }}</div>
+            <div class="album-name">{{ song.album }}</div>
+          </div>
+          <button class="remove-btn" (click)="remove(song.song_name)">✖</button>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #empty>
+      <p>You have no favourites yet.</p>
+    </ng-template>
+  </div>
+>
+  <img
+    [src]="favourites.length > 0 ? 'assets/images/silly.png' : 'assets/images/cry2.png'"
+    alt="Side image"
+    class="side-image"
+    style="margin-left: 20px;"
+  />
+</div>

@@ -1,0 +1,61 @@
+<div class="container">
+    <!-- Album covers -->
+    <div class="album-sidebar">
+      <div class="album-covers">
+        <img
+          *ngFor="let album of albums"
+          [src]="album.image"
+          [alt]="album.name"
+          (click)="loadSongs(album.name)"
+          [class.active]="selectedAlbum === album.name"
+        />
+      </div>
+    </div>
+  
+    <div
+      class="tracklist-panel"
+      [ngStyle]="{
+        'background-color': selectedAlbumObj?.color,
+        'color': selectedAlbumObj?.textColor,
+        'border-color': selectedAlbumObj?.borderColor
+      }"
+    >
+      <div class="tracklist-window">
+
+        <div class="tracklist-left">
+          <h2>Tracklist</h2>
+          <ol *ngIf="songs.length > 0">
+            <li *ngFor="let song of songs">
+              {{ song.title }}
+
+              <button (click)="toggleFavourite(song)"
+              [disabled]="song.favourited"
+              [ngClass]="{ 'disabled-heart': song.favourited }">
+              <span
+              [ngClass]="{
+                'red-heart': song.favourited,
+                'gray-heart': !song.favourited && selectedAlbum !== 'Happier Than Ever',
+                'white-heart': !song.favourited && selectedAlbum === 'Happier Than Ever'
+              }"
+            >
+              ♡
+            </span></button>
+
+            </li>
+            
+          </ol>
+              
+          <p *ngIf="songs.length === 0">No songs found for this album.</p>
+        </div>
+  
+        <div class="album-art">
+          <img
+            *ngFor="let img of selectedAlbumObj?.detailImages"
+            [src]="img"
+            alt="album image"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  

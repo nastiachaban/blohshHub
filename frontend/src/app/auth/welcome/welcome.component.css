@@ -1,0 +1,32 @@
+body, html {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .welcome-container {
+height : 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  button {
+    background-color: black;
+    color: white;
+    font-family: 'Jockey One', sans-serif;
+    font-size: 29px;
+    padding: 18px 32px;
+    margin: 12px 0;
+    border: none;
+    border-radius: 8px;
+    border: 2px solid white;
+    width: 240px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #222;
+  }
+  

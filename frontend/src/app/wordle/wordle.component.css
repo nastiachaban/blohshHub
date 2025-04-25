@@ -1,0 +1,149 @@
+.wordle-wrapper {
+    font-family: "Jockey One", sans-serif;
+    text-align: center;
+    color: white;
+    min-height: 500px;           
+    padding-top: 4px;           
+    padding-bottom: 7px;
+    box-sizing: border-box;
+    overflow: hidden;           
+    display: flex;
+    flex-direction: column;
+    justify-content: center;     
+    align-items: center;
+    border-radius: 10px;
+  }
+  
+  .keyboard {
+    margin-top: 12px;
+  }
+  
+  .key-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .key {
+    background-color: #545e7c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 0 2px;
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  
+  .board {
+    display: grid;
+    justify-content: center;
+    margin-top: 8px;
+  }
+  .row {
+    display: flex;
+    justify-content: center;
+  
+  }
+  .tile {
+    width: 60px;
+    height: 60px;
+   margin-bottom: 4px;
+   margin-right: 4px; 
+    font-size: 2rem;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 60px;
+    font-weight: bold;
+    background-color: #d3d3d3;
+    color: #111;
+    border-radius: 5px;
+  }
+
+  .game-area {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 3rem;
+    margin-top:-6px;
+    flex-wrap: wrap;
+  }
+  
+  .rules {
+    background-color: #fff;
+    color: #0f2a44;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    margin-top: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    width: 280px;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  .mycutie1{
+    background-color: #fff;
+    color: #0f2a44;
+    margin-top: 10px;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    width: 280px;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: left;
+  }
+  
+  .color-box {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+    border-radius: 4px;
+  }
+  
+  .color-box.green {
+    background-color: #6aaa64;
+  }
+  .color-box.yellow {
+    background-color: #c9b458;
+  }
+  .color-box.gray {
+    background-color: #787c7e;
+  }
+  
+  img {
+    width: 270px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 0px;
+  }
+
+
+  .message{
+
+    color: black;
+  }
+  
+  .replay-container {
+    margin-top: 8px;
+    text-align: center;
+  }
+  
+  .replay-btn {
+    background-color: #4c4c81;
+    color: white;
+    font-size: 1rem;
+    padding: 0.5rem 1.2rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .replay-btn:hover {
+    background-color: #222258;
+  }
+  

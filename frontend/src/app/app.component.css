@@ -1,0 +1,34 @@
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #fff;
+    color: #0f2a44;
+    font-size: 1.5rem;
+  }
+  
+  .navbar .nav-center a {
+    margin: 0 1.5rem;
+    text-decoration: none;
+    color: #0f2a44;
+    font-family: 'Jockey One', sans-serif;
+  }
+  
+  .navbar .nav-center a.active {
+    border-bottom: 4px solid #0f2a44;
+    padding-bottom: 0.2rem;
+  }
+  
+  .logout-btn {
+    background-color: #102744;
+    color: white;
+    font-family: 'Jockey One', sans-serif;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 20px;
+  }
+  

@@ -1,0 +1,20 @@
+<div class="comments-wrapper">
+    <div class="comments-list">
+      <div *ngFor="let comment of comments" class="comment-box">
+        <div class="comment1">
+        <strong class="username">{{ comment.username }}</strong>
+        <p class="content">{{ comment.content }}</p>
+        <small class="date">{{ comment.created_at | date: 'dd MMMM yyyy, HH:mm' }}</small>
+    </div>
+      </div>
+    </div>
+  
+    <div class="comment-form">
+      <textarea [(ngModel)]="newComment" placeholder="write a comment...."></textarea>
+      <div class="btn-row">
+        <button (click)="postComment()">post</button>
+        <button (click)="cancel()">cancel</button>
+      </div>
+    </div>
+  </div>
+  

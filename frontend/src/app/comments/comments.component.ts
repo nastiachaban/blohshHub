@@ -13,11 +13,17 @@ import { FormsModule } from '@angular/forms';
 export class CommentsComponent implements OnInit {
   comments: any[] = [];
   newComment: string = '';
+  editingCommentId: number | null = null;
+  editContent: string = '';
+  isAdmin: boolean = false;
 
   constructor(private commentsService: CommentsService) {}
 
   ngOnInit(): void {
     this.loadComments();
+
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    this.isAdmin = user.role === 'admin'; // check user role
   }
 
   loadComments() {
@@ -43,4 +49,43 @@ export class CommentsComponent implements OnInit {
   cancel() {
     this.newComment = '';
   }
+
+  // Admin-only methods
+  startEdit(comment: any) {
+    this.editingCommentId = comment.id;
+    this.editContent = comment.content;
+  }
+
+  cancelEdit() {
+    this.editingCommentId = null;
+    this.editContent = '';
+  }
+
+  saveEdit(commentId: number) {
+    if (!this.editContent.trim()) return;
+  
+    this.commentsService.updateComment(commentId, {
+      content: this.editContent.trim()
+    }).subscribe(() => {
+      // find the comment and update its content
+      const comment = this.comments.find(c => c.id === commentId);
+      if (comment) {
+        comment.content = this.editContent.trim();
+      }
+  
+      this.cancelEdit(); // close edit mode
+    });
+  }
+  
+  
+
+  deleteComment(commentId: number) {
+    if (confirm('Delete this comment?')) {
+      this.commentsService.deleteComment(commentId).subscribe(() => {
+        // Instantly remove the comment from UI
+        this.comments = this.comments.filter(c => c.id !== commentId);
+      });
+    }
+  }
+  
 }

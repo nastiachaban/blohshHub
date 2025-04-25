@@ -1,20 +1,58 @@
 <div class="comments-wrapper">
-    <div class="comments-list">
-      <div *ngFor="let comment of comments" class="comment-box">
-        <div class="comment1">
-        <strong class="username">{{ comment.username }}</strong>
-        <p class="content">{{ comment.content }}</p>
+  <div class="comments-list">
+    <div *ngFor="let comment of comments" 
+     class="comment-box" 
+     [ngClass]="{ 'admin-comment': comment.role === 'admin' }">
+
+      <div class="comment1">
+        <div class="comment-header">
+          <strong class="username">
+            {{ comment.username }}
+            <span *ngIf="comment.role === 'admin'" class="admin-badge">★</span>
+          </strong>
+          
+
+          <!-- Admin buttons -->
+          <div *ngIf="isAdmin" class="admin-controls">
+            <img
+              src="assets/images/edit.png"
+              alt="Edit"
+              class="icon-btn"
+              (click)="startEdit(comment)"
+            />
+            <img
+              src="assets/images/bin.png"
+              alt="Delete"
+              class="icon-btn"
+              (click)="deleteComment(comment.id)"
+            />
+          </div>
+        </div>
+
+        <!-- Editing mode -->
+        <div *ngIf="editingCommentId === comment.id; else showContent">
+          <textarea [(ngModel)]="editContent" class="editArea"></textarea>
+          <div class="btn-row">
+            <button (click)="saveEdit(comment.id)">Save</button>
+            <button (click)="cancelEdit()">Cancel</button>
+          </div>
+        </div>
+
+        <!-- Normal view -->
+        <ng-template #showContent>
+          <p class="content">{{ comment.content }}</p>
+        </ng-template>
+
         <small class="date">{{ comment.created_at | date: 'dd MMMM yyyy, HH:mm' }}</small>
-    </div>
-      </div>
-    </div>
-  
-    <div class="comment-form">
-      <textarea [(ngModel)]="newComment" placeholder="write a comment...."></textarea>
-      <div class="btn-row">
-        <button (click)="postComment()">post</button>
-        <button (click)="cancel()">cancel</button>
       </div>
     </div>
   </div>
-  
+
+  <div class="comment-form">
+    <textarea [(ngModel)]="newComment" placeholder="write a comment...."></textarea>
+    <div class="btn-row">
+      <button (click)="postComment()">post</button>
+      <button (click)="cancel()">cancel</button>
+    </div>
+  </div>
+</div>

@@ -13,7 +13,13 @@ connection.connect();
 
 // Get all comments
 router.get('/', (req, res) => {
-  const query = 'SELECT * FROM comments ORDER BY created_at DESC';
+  const query = `
+  SELECT comments.*, users.role 
+  FROM comments 
+  JOIN users ON comments.user_id = users.id 
+  ORDER BY comments.created_at DESC
+`;
+
   connection.query(query, (err, results) => {
     if (err) return res.status(500).send(err);
     res.json(results);
@@ -34,5 +40,32 @@ router.post('/', (req, res) => {
     res.status(201).json({ id: result.insertId, user_id, username, content, created_at: new Date() });
   });
 });
+
+// Update a comment
+router.put('/:id', (req, res) => {
+  const { id } = req.params;
+  const { content } = req.body;
+
+  if (!content) return res.status(400).send({ error: 'Missing content' });
+
+  const query = 'UPDATE comments SET content = ? WHERE id = ?';
+  connection.query(query, [content, id], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json({ success: true }); // ✅ important
+  });
+});
+
+
+// Delete a comment
+router.delete('/:id', (req, res) => {
+  const { id } = req.params;
+
+  const query = 'DELETE FROM comments WHERE id = ?';
+  connection.query(query, [id], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json({ success: true }); // ✅ important
+  });
+});
+
 
 module.exports = router;

@@ -23,7 +23,7 @@ export class CommentsComponent implements OnInit {
     this.loadComments();
 
     const user = JSON.parse(localStorage.getItem('user') || '{}');
-    this.isAdmin = user.role === 'admin'; // check user role
+    this.isAdmin = user.role === 'admin';
   }
 
   loadComments() {
@@ -50,7 +50,6 @@ export class CommentsComponent implements OnInit {
     this.newComment = '';
   }
 
-  // Admin-only methods
   startEdit(comment: any) {
     this.editingCommentId = comment.id;
     this.editContent = comment.content;
@@ -67,22 +66,17 @@ export class CommentsComponent implements OnInit {
     this.commentsService.updateComment(commentId, {
       content: this.editContent.trim()
     }).subscribe(() => {
-      // find the comment and update its content
-      const comment = this.comments.find(c => c.id === commentId);
-      if (comment) {
-        comment.content = this.editContent.trim();
-      }
+      const target = this.comments.find(c => c.id === commentId);
+      if (target) target.content = this.editContent;
   
-      this.cancelEdit(); // close edit mode
+      this.cancelEdit();
     });
   }
-  
-  
 
   deleteComment(commentId: number) {
     if (confirm('Delete this comment?')) {
       this.commentsService.deleteComment(commentId).subscribe(() => {
-        // Instantly remove the comment from UI
+  
         this.comments = this.comments.filter(c => c.id !== commentId);
       });
     }

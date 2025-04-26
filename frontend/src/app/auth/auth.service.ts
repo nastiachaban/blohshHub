@@ -14,7 +14,6 @@ export class AuthService {
     private http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    // check login status only in browser
     if (isPlatformBrowser(this.platformId)) {
       const storedUser = localStorage.getItem('user');
       this.loggedIn.next(!!storedUser);

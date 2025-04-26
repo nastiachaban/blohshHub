@@ -24,7 +24,7 @@ export class FavouritesComponent implements OnInit {
   
     if (userId) {
       this.favService.getFavourites(userId).subscribe((res: any) => {
-        this.favourites = res; // array of { song_name, album }
+        this.favourites = res; 
       });
     }
   }

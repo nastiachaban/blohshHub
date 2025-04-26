@@ -2,15 +2,9 @@
 <div class="game-area">
   
     <div class="mycutie1">
-        <h3>try to guess word</h3>
+        <h3 style="margin-top: 15px;">try to guess the word</h3>
         <img
-  [src]="
-    gameWon
-      ? 'assets/images/yay.png'
-      : gameLost
-      ? 'assets/images/lol.png'
-      : 'assets/images/guess.png'
-  "
+  [src]=" gameWon ? 'assets/images/yay.png' : gameLost ? 'assets/images/lol.png' : 'assets/images/guess.png' "
   alt="Billie image"
 />
 
@@ -30,12 +24,22 @@
     </div>
   
     <div class="rules">
-      <h3>How to play 🎮</h3>
+      <h3 style="margin-top:-2px;">How to play 🎮</h3>
       <p><span class="color-box green"></span> Letter is in the word and in the correct spot.</p>
-      <p><span class="color-box yellow"></span> Letter is in the word but in the wrong spot.</p>
+      <p style="margin-top:-7px;"><span class="color-box yellow" ></span> Letter is in the word but in the wrong spot.</p>
       <p><span class="color-box gray"></span> Letter is not in the word at all.</p>
+
+      <div class="status-card">
+        <h3 style="margin-top:-6px;">Stats </h3>
+        <p style="margin-top: -10px;">Rank: {{ status }}</p>
+        <p style="margin-top: -10px;">Times Won: {{ timesWon }}</p>
+        <p *ngIf="winsToNextStatus > 0" style="margin-top: -11px; margin-bottom: -5px;" >Wins until next rank: {{ winsToNextStatus }}</p>
+      </div>
+
     </div>
   </div>
+
+  
   
   <div class="keyboard">
     <div class="key-row" *ngFor="let row of keyRows">
@@ -51,7 +55,7 @@
   <div *ngIf="message" class="message">{{ message }}</div>
 
 <div class="replay-container">
-  <button class="replay-btn" (click)="resetGame()">🔁 Replay</button>
+  <button class="replay-btn" (click)="resetGame()">restart</button>
 </div>
 
 </div>

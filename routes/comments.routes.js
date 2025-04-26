@@ -11,7 +11,6 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
-// Get all comments
 router.get('/', (req, res) => {
   const query = `
   SELECT comments.*, users.role 
@@ -26,7 +25,6 @@ router.get('/', (req, res) => {
   });
 });
 
-// Post a comment
 router.post('/', (req, res) => {
   const { user_id, username, content } = req.body;
 
@@ -41,7 +39,6 @@ router.post('/', (req, res) => {
   });
 });
 
-// Update a comment
 router.put('/:id', (req, res) => {
   const { id } = req.params;
   const { content } = req.body;
@@ -51,19 +48,17 @@ router.put('/:id', (req, res) => {
   const query = 'UPDATE comments SET content = ? WHERE id = ?';
   connection.query(query, [content, id], (err, result) => {
     if (err) return res.status(500).send(err);
-    res.json({ success: true }); // ✅ important
+    res.json({ success: true }); 
   });
 });
 
-
-// Delete a comment
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
 
   const query = 'DELETE FROM comments WHERE id = ?';
   connection.query(query, [id], (err, result) => {
     if (err) return res.status(500).send(err);
-    res.json({ success: true }); // ✅ important
+    res.json({ success: true }); 
   });
 });
 

@@ -11,8 +11,6 @@
             <span *ngIf="comment.role === 'admin'" class="admin-badge">★</span>
           </strong>
           
-
-          <!-- Admin buttons -->
           <div *ngIf="isAdmin" class="admin-controls">
             <img
               src="assets/images/edit.png"
@@ -29,7 +27,6 @@
           </div>
         </div>
 
-        <!-- Editing mode -->
         <div *ngIf="editingCommentId === comment.id; else showContent">
           <textarea [(ngModel)]="editContent" class="editArea"></textarea>
           <div class="btn-row">
@@ -38,7 +35,6 @@
           </div>
         </div>
 
-        <!-- Normal view -->
         <ng-template #showContent>
           <p class="content">{{ comment.content }}</p>
         </ng-template>

@@ -123,16 +123,16 @@ button:hover {
 }
 
 .admin-comment {
-  background-color: #ffe3ec;            /* light pink background */
-  border: 2px dashed #ff99bb;           /* pink border */
+  background-color: #ffe3ec;            
+  border: 2px dashed #ff99bb;          
 }
 
 .admin-comment .username {
-  color: #b30059;                       /* dark pink username */
+  color: #b30059;                     
 }
 
 .admin-comment .content {
-  color: #cc0066;                       /* dark pink text */
+  color: #cc0066;                      
 }
 
 .admin-badge {

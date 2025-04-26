@@ -96,12 +96,12 @@ export class SongsComponent implements OnInit {
         },
         error: (err) => {
           console.warn('No favourites found or failed to load favourites:', err);
-          this.favouritedSongs = []; // fallback to none
-          this.loadSongs(this.selectedAlbum); // still show songs!
+          this.favouritedSongs = [];
+          this.loadSongs(this.selectedAlbum); 
         }
       });
     } else {
-      this.loadSongs(this.selectedAlbum); // not logged in? show songs anyway
+      this.loadSongs(this.selectedAlbum); 
     }
   }
   
@@ -111,16 +111,14 @@ export class SongsComponent implements OnInit {
     const userId = user ? JSON.parse(user).id : null;
     if (!userId) return;
   
-    // Toggle instantly
     song.favourited = true;
     this.favouritedSongs.push(song.title);
   
     this.favService.addFavourite(userId, song.title).subscribe({
       next: () => {
-        console.log('❤️ Added to favourites:', song.title);
+        console.log(' Added to favourites:', song.title);
       },
       error: () => {
-        // Optional: Rollback if it fails
         song.favourited = false;
         this.favouritedSongs = this.favouritedSongs.filter(s => s !== song.title);
       }

@@ -18,8 +18,9 @@ export class WordleComponent implements OnInit {
   maxGuesses = 6;
   gameLost = false;
   gameWon = false;
-
-
+  timesWon: number = 0;
+status: string = 'Newbie';
+winsToNextStatus: number = 5;
 
   keyRows = [
     ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
@@ -35,6 +36,12 @@ export class WordleComponent implements OnInit {
       this.targetWord = words[randomIndex].toUpperCase();
       console.log('Target word:', this.targetWord);
     });
+
+    const storedWins = localStorage.getItem('timesWon');
+  if (storedWins) {
+    this.timesWon = +storedWins;
+    this.updateStatus();
+  }
   }
 
   handleKey(key: string): void {
@@ -66,11 +73,39 @@ export class WordleComponent implements OnInit {
     if (guess === this.targetWord) {
       this.message = 'Congrats cutie! you got it!💗';
       this.gameWon = true;
+      this.timesWon++;
+      localStorage.setItem('timesWon', this.timesWon.toString());
+      this.updateStatus();
     } else if (this.guesses.length === this.maxGuesses) {
-      this.message = `The word was ${this.targetWord}`;
+      this.message = `HAHA,the word was ${this.targetWord}`;
       this.gameLost = true;
     }
     
+  }
+  
+  updateStatus(): void {
+    if (this.timesWon >= 150) {
+      this.status = 'Legend';
+      this.winsToNextStatus = 0;
+    } else if (this.timesWon >= 100) {
+      this.status = 'Master';
+      this.winsToNextStatus = 150 - this.timesWon;
+    } else if (this.timesWon >= 50) {
+      this.status = 'Expert';
+      this.winsToNextStatus = 100 - this.timesWon;
+    } else if (this.timesWon >= 30) {
+      this.status = 'Pro';
+      this.winsToNextStatus = 50 - this.timesWon;
+    } else if (this.timesWon >= 15) {
+      this.status = 'Intermediate';
+      this.winsToNextStatus = 30 - this.timesWon;
+    } else if (this.timesWon >= 5) {
+      this.status = 'Beginner';
+      this.winsToNextStatus = 15 - this.timesWon;
+    } else {
+      this.status = 'Newbie';
+      this.winsToNextStatus = 5 - this.timesWon;
+    }
   }
   
 

@@ -16,7 +16,7 @@ export class FavouritesService {
   addFavourite(userId: number, songName: string) {
     return this.http.post(
       `/api/favourites/${userId}`,
-      { song_name: songName }, // send object, not string
+      { song_name: songName }, 
       {
         headers: { 'Content-Type': 'application/json' }
       }

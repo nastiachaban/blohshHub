@@ -2,10 +2,8 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
 
-// Use your existing connection
-const connection = require('../mysql'); // we’ll make this next!
+const connection = require('../mysql'); 
 
-// SIGNUP
 router.post('/signup', async (req, res) => {
   const { username, password } = req.body;
   try {
@@ -20,8 +18,6 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-// LOGIN
-// LOGIN
 router.post('/login', (req, res) => {
   const { username, password } = req.body;
   const sql = 'SELECT * FROM users WHERE username = ?';
@@ -32,7 +28,6 @@ router.post('/login', (req, res) => {
     const match = await bcrypt.compare(password, user.password_hash);
     if (!match) return res.status(400).json({ error: 'Invalid credentials' });
 
-    // 👇 now includes role
     res.json({ id: user.id, username: user.username, role: user.role });
   });
 });

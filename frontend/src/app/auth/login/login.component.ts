@@ -21,6 +21,7 @@ export class LoginComponent {
     this.auth.login(this.username, this.password).subscribe({
       next: (res) => {
         localStorage.setItem('user', JSON.stringify(res));
+        localStorage.setItem('username', res.username);
 
         this.router.navigate(['/shows']).then(() => {
           window.location.reload();

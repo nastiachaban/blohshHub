@@ -19,8 +19,8 @@ export class WordleComponent implements OnInit {
   gameLost = false;
   gameWon = false;
   timesWon: number = 0;
-status: string = 'Newbie';
-winsToNextStatus: number = 5;
+  status: string = 'Newbie';
+  winsToNextStatus: number = 5;
 
   keyRows = [
     ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
@@ -31,22 +31,39 @@ winsToNextStatus: number = 5;
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
+    const username = localStorage.getItem('username');
+    if (!username) {
+      console.error('No user logged in!');
+      return;
+    }
+    this.loadWordleStats();
+  
     this.http.get<string[]>('assets/words.json').subscribe(words => {
       const randomIndex = Math.floor(Math.random() * words.length);
       this.targetWord = words[randomIndex].toUpperCase();
-      console.log('Target word:', this.targetWord);
     });
+  }
+  
 
-    const storedWins = localStorage.getItem('timesWon');
-  if (storedWins) {
-    this.timesWon = +storedWins;
-    this.updateStatus();
+  loadWordleStats(): void {
+    const username = localStorage.getItem('username');
+    if (!username) {
+      console.error('No user found in localStorage!');
+      return;
+    }
+    this.http.get<{ wordleWins: number, userRank: string }>(`/api/users/stats/${username}`)
+      .subscribe(data => {
+        this.timesWon = data.wordleWins;
+        this.status = data.userRank;
+        this.updateStatus();
+      }, error => {
+        console.error('Failed to load stats', error);
+      });
   }
-  }
+  
 
   handleKey(key: string): void {
     if (this.message) return;
-
     if (key === 'ENTER') {
       if (this.currentGuess.length === 5) {
         this.submitGuess();
@@ -66,23 +83,32 @@ winsToNextStatus: number = 5;
       if (this.targetWord.includes(letter)) return 'yellow';
       return '#b3b1cc';
     });
-  
+
     this.guesses.push({ letters, feedback });
     this.currentGuess = '';
-  
+
     if (guess === this.targetWord) {
       this.message = 'Congrats cutie! you got it!💗';
       this.gameWon = true;
-      this.timesWon++;
-      localStorage.setItem('timesWon', this.timesWon.toString());
-      this.updateStatus();
+
+    const username = localStorage.getItem('username');
+    this.http.post('/api/users/win', { username }).subscribe({
+      next: () => {
+  
+        this.timesWon++;    
+        this.updateStatus(); 
+      },
+      error: (err) => {
+        console.error('Failed to save win', err);
+      }
+    });
+
     } else if (this.guesses.length === this.maxGuesses) {
-      this.message = `HAHA,the word was ${this.targetWord}`;
+      this.message = `HAHA, the word was ${this.targetWord}`;
       this.gameLost = true;
     }
-    
   }
-  
+
   updateStatus(): void {
     if (this.timesWon >= 150) {
       this.status = 'Legend';
@@ -107,7 +133,6 @@ winsToNextStatus: number = 5;
       this.winsToNextStatus = 5 - this.timesWon;
     }
   }
-  
 
   getColor(color: string): string {
     switch (color) {
@@ -117,35 +142,28 @@ winsToNextStatus: number = 5;
       default: return '#b3b1cc';
     }
   }
+
   get displayRows() {
     const rows = [...this.guesses];
     if (this.guesses.length < this.maxGuesses) {
       const paddedLetters = this.currentGuess.padEnd(5).split('');
       rows.push({ letters: paddedLetters, feedback: Array(5).fill('') });
     }
-  
     while (rows.length < this.maxGuesses) {
       rows.push({ letters: Array(5).fill(''), feedback: Array(5).fill('') });
     }
-  
     return rows;
   }
 
-  
   resetGame(): void {
     this.guesses = [];
     this.currentGuess = '';
     this.message = '';
     this.gameLost = false;
     this.gameWon = false;
-  
     this.http.get<string[]>('assets/words.json').subscribe(words => {
       const randomIndex = Math.floor(Math.random() * words.length);
       this.targetWord = words[randomIndex].toUpperCase();
-      console.log('New target word:', this.targetWord);
     });
   }
-  
-  
-  
 }

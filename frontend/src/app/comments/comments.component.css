@@ -162,7 +162,7 @@ button:hover {
 
 .comment-form-image {
   position: absolute;
-  bottom: 10px;
+  bottom: -5px;
   right: 10px;
   width: 120px; 
   height: auto;

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import confetti from 'canvas-confetti';
+
 
 @Component({
   selector: 'app-wordle',
@@ -90,6 +92,12 @@ export class WordleComponent implements OnInit {
     if (guess === this.targetWord) {
       this.message = 'Congrats cutie! you got it!💗';
       this.gameWon = true;
+      confetti({
+        particleCount: 200,
+        spread: 100,
+        origin: { y: 0.7 },
+        colors: ['#ff69b4', '#ffb6c1', '#ffc0cb']
+      });      
 
     const username = localStorage.getItem('username');
     this.http.post('/api/users/win', { username }).subscribe({

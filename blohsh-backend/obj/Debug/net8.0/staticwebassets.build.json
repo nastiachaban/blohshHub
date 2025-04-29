@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "cGDma6hfhaLwQikaN/1yTMgDmjlTNB3Cih5T98J6bRs=",
+  "Source": "blohsh-backend",
+  "BasePath": "_content/blohsh-backend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

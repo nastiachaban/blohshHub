@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class FavouritesService {
-  private baseUrl = 'http://localhost:3010/api/favourites';
+  private baseUrl = 'http://localhost:5229/api/favourites';
 
   constructor(private http: HttpClient) {}
 

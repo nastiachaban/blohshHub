@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\blohsh-backend.props" />
+</Project>

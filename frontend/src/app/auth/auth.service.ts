@@ -5,7 +5,7 @@ import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private baseUrl = 'http://localhost:3010/api/auth';
+  private baseUrl = 'http://localhost:5229/api/auth';
 
   private loggedIn = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.loggedIn.asObservable();
@@ -21,12 +21,19 @@ export class AuthService {
   }
 
   signup(username: string, password: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/signup`, { username, password });
+    return this.http.post(`${this.baseUrl}/signup`, { 
+      username, 
+      passwordHash: password 
+    });
   }
+  
 
   login(username: string, password: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/login`, { username, password });
-  }
+    return this.http.post(`${this.baseUrl}/login`, { 
+      username, 
+      passwordHash: password 
+    });
+  }  
 
   setLoggedIn(user: any): void {
     if (isPlatformBrowser(this.platformId)) {

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("blohsh-backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+99a9f5f463d11ea68d9b6e4ce9863209d4bf6d86")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+adbffc4f104d83efc1aa157d53308b6b6366b626")]
 [assembly: System.Reflection.AssemblyProductAttribute("blohsh-backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("blohsh-backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

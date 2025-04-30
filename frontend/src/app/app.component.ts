@@ -25,7 +25,6 @@ export class AppComponent {
       const user = localStorage.getItem('user');
       console.log('🔐 Logged-in user:', user); 
 
-      // 👇 hide navbar on login/signup
       this.router.events
         .pipe(filter(e => e instanceof NavigationEnd))
         .subscribe((event: any) => {
@@ -35,10 +34,12 @@ export class AppComponent {
     }
   }
 
-  // 🚪 Log out and go back to welcome
   logout() {
-    localStorage.removeItem('user');
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem('user');
+    }
     this.isLoggedIn = false;
     this.router.navigate(['/']);
   }
+  
 }

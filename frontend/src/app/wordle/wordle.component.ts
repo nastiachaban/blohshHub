@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, Inject, PLATFORM_ID  } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import confetti from 'canvas-confetti';
+
 
 
 @Component({
@@ -10,7 +11,8 @@ import confetti from 'canvas-confetti';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './wordle.component.html',
-  styleUrls: ['./wordle.component.css']
+  styleUrls: ['./wordle.component.css'],
+  
 })
 export class WordleComponent implements OnInit {
   targetWord = '';
@@ -30,29 +32,38 @@ export class WordleComponent implements OnInit {
     ['ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '⌫']
   ];
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
-  ngOnInit(): void {
-    const username = localStorage.getItem('username');
-    if (!username) {
-      console.error('No user logged in!');
-      return;
+ ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      const username = localStorage.getItem('username');
+      if (!username) {
+        console.error('No user logged in!');
+        return;
+      }
+
+      this.loadWordleStats();
+
+      this.http.get<string[]>('assets/words.json').subscribe(words => {
+        const randomIndex = Math.floor(Math.random() * words.length);
+        this.targetWord = words[randomIndex].toUpperCase();
+      });
     }
-    this.loadWordleStats();
-  
-    this.http.get<string[]>('assets/words.json').subscribe(words => {
-      const randomIndex = Math.floor(Math.random() * words.length);
-      this.targetWord = words[randomIndex].toUpperCase();
-    });
   }
   
 
   loadWordleStats(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     const username = localStorage.getItem('username');
     if (!username) {
       console.error('No user found in localStorage!');
       return;
     }
+
     this.http.get<{ wordleWins: number, userRank: string }>(`/api/users/stats/${username}`)
       .subscribe(data => {
         this.timesWon = data.wordleWins;
@@ -99,17 +110,18 @@ export class WordleComponent implements OnInit {
         colors: ['#ff69b4', '#ffb6c1', '#ffc0cb']
       });      
 
-    const username = localStorage.getItem('username');
-    this.http.post('/api/users/win', { username }).subscribe({
-      next: () => {
-  
-        this.timesWon++;    
-        this.updateStatus(); 
-      },
-      error: (err) => {
-        console.error('Failed to save win', err);
+      if (isPlatformBrowser(this.platformId)) {
+        const username = localStorage.getItem('username');
+        this.http.post('/api/users/win', { username }).subscribe({
+          next: () => {
+            this.timesWon++;
+            this.updateStatus();
+          },
+          error: (err) => {
+            console.error('Failed to save win', err);
+          }
+        });
       }
-    });
 
     } else if (this.guesses.length === this.maxGuesses) {
       this.message = `HAHA, the word was ${this.targetWord}`;

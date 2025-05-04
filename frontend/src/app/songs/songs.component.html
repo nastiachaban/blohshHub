@@ -1,5 +1,5 @@
 <div class="container">
-    <!-- Album covers -->
+
     <div class="album-sidebar">
       <div class="album-covers">
         <img
@@ -23,7 +23,10 @@
       <div class="tracklist-window">
 
         <div class="tracklist-left">
-          <h2>Tracklist</h2>
+
+          <h2 style="font-size: 30px; margin-bottom: 1px; width: 600px;">{{ selectedAlbum }}</h2> 
+
+          <h2 style="font-weight: lighter; margin-bottom:-14px; margin-top:3px;">Tracklist</h2>
           <ol *ngIf="songs.length > 0">
             <li *ngFor="let song of songs">
               {{ song.title }}

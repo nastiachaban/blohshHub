@@ -163,3 +163,76 @@
     background-color: #222258;
   }
   
+
+  .key.green {
+    background-color: #6aaa64;
+    color: white;
+  }
+  
+  .key.yellow {
+    background-color: #c9b458;
+    color: white;
+  }
+  
+  .key.gray {
+    background-color: #787c7e;
+    color: white;
+  }
+  .rank-tooltip {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    background-color: #b0d2eb; 
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 14px;
+    margin-left: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  
+  .rank-tooltip:hover {
+    background-color: #b5dcea; 
+  }
+  
+  .rank-tooltip .tooltip-text {
+    visibility: hidden;
+    width: 240px;
+    background-color: #afd7e8; 
+    color: #222;
+    text-align: left;
+    border-radius: 8px;
+    padding: 10px 12px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -120px;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    font-size: 15px; 
+    font-weight: 400; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .rank-tooltip .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -6px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: #ffe0ec transparent transparent transparent;
+  }
+  
+  .rank-tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(-6px);
+  }
+  

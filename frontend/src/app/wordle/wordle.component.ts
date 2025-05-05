@@ -26,6 +26,8 @@ export class WordleComponent implements OnInit {
   status: string = 'Newbie';
   winsToNextStatus: number = 5;
 
+  letterStatuses: { [key: string]: string } = {};
+
   keyRows = [
     ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
     ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
@@ -91,15 +93,51 @@ export class WordleComponent implements OnInit {
   submitGuess(): void {
     const guess = this.currentGuess.toUpperCase();
     const letters = guess.split('');
-    const feedback = letters.map((letter, i) => {
-      if (letter === this.targetWord[i]) return 'green';
-      if (this.targetWord.includes(letter)) return 'yellow';
-      return '#b3b1cc';
-    });
-
+    const feedback = Array(5).fill('#b3b1cc');
+    const targetLetters = this.targetWord.split('');
+  
+    const targetLetterCounts: { [key: string]: number } = {};
+  
+    for (let i = 0; i < 5; i++) {
+      if (letters[i] === targetLetters[i]) {
+        feedback[i] = 'green';
+      } else {
+        const letter = targetLetters[i];
+        targetLetterCounts[letter] = (targetLetterCounts[letter] || 0) + 1;
+      }
+    }
+  
+    for (let i = 0; i < 5; i++) {
+      if (feedback[i] === 'green') continue;
+  
+      const letter = letters[i];
+      if (targetLetterCounts[letter]) {
+        feedback[i] = 'yellow';
+        targetLetterCounts[letter]--;
+      }
+    }
+  
     this.guesses.push({ letters, feedback });
     this.currentGuess = '';
 
+    for (let i = 0; i < 5; i++) {
+      const letter = letters[i];
+      const feedbackColor = feedback[i];
+      const currentStatus = this.letterStatuses[letter];
+    
+      if (feedbackColor === 'green') {
+        this.letterStatuses[letter] = 'green';
+      } else if (feedbackColor === 'yellow') {
+        if (currentStatus !== 'green') {
+          this.letterStatuses[letter] = 'yellow';
+        }
+      } else {
+        if (!currentStatus) {
+          this.letterStatuses[letter] = 'gray';
+        }
+      }
+    }
+  
     if (guess === this.targetWord) {
       this.message = 'Congrats cutie! you got it!💗';
       this.gameWon = true;
@@ -108,8 +146,8 @@ export class WordleComponent implements OnInit {
         spread: 100,
         origin: { y: 0.7 },
         colors: ['#ff69b4', '#ffb6c1', '#ffc0cb']
-      });      
-
+      });
+  
       if (isPlatformBrowser(this.platformId)) {
         const username = localStorage.getItem('username');
         this.http.post('/api/users/win', { username }).subscribe({
@@ -122,12 +160,12 @@ export class WordleComponent implements OnInit {
           }
         });
       }
-
     } else if (this.guesses.length === this.maxGuesses) {
       this.message = `HAHA, the word was ${this.targetWord}`;
       this.gameLost = true;
     }
   }
+  
 
   updateStatus(): void {
     if (this.timesWon >= 150) {
@@ -181,6 +219,9 @@ export class WordleComponent implements OnInit {
     this.message = '';
     this.gameLost = false;
     this.gameWon = false;
+
+    this.letterStatuses = {}; 
+    
     this.http.get<string[]>('assets/words.json').subscribe(words => {
       const randomIndex = Math.floor(Math.random() * words.length);
       this.targetWord = words[randomIndex].toUpperCase();

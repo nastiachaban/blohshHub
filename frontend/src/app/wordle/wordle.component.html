@@ -31,7 +31,22 @@
 
       <div class="status-card">
         <h3 style="margin-top:-6px;">Stats </h3>
-        <p style="margin-top: -10px;">Rank: {{ status }}</p>
+        <p style="margin-top: -10px;">
+          Rank: {{ status }} 
+          <span class="rank-tooltip">?
+            <span class="tooltip-text">
+              <strong>Ranking System:</strong><br>
+              Newbie: 0-4 wins<br>
+              Beginner: 5-14 wins<br>
+              Intermediate: 15-29 wins<br>
+              Pro: 30-49 wins<br>
+              Expert: 50-99 wins<br>
+              Master: 100-149 wins<br>
+              Legend: 150+ wins
+            </span>
+          </span>
+        </p>
+        
         <p style="margin-top: -10px;">Times Won: {{ timesWon }}</p>
         <p *ngIf="winsToNextStatus > 0" style="margin-top: -11px; margin-bottom: -5px;" >Wins until next rank: {{ winsToNextStatus }}</p>
       </div>
@@ -46,7 +61,8 @@
       <button 
         class="key"
         *ngFor="let key of row"
-        (click)="handleKey(key)">
+        (click)="handleKey(key)"
+        [ngClass]="letterStatuses[key]">
         {{ key }}
       </button>
     </div>

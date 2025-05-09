@@ -31,7 +31,7 @@ It features tour info, album era switching,billie-themed wordle and a comment se
 cd blohsh-backend
 dotnet run
 ````
-in another terminal
+3. In another terminal, run the frontend:
 
 ```bash
 cd frontend

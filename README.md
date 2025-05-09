@@ -22,7 +22,7 @@ It features tour info, album era switching,billie-themed wordle and a comment se
 - **Database**: MySQL
 - **Auth**: Simple role-based system
 
-- ### Run the Project
+## Run the Project
 
 1. Open the project folder.
 2. In one terminal, run the backend:

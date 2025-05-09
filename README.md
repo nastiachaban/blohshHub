@@ -30,8 +30,10 @@ It features tour info, album era switching,billie-themed wordle and a comment se
 ```bash
 cd blohsh-backend
 dotnet run
-
+````
 in another terminal
+
+```bash
 cd frontend
 npm install
 npm start

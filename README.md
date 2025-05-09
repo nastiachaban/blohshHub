@@ -21,3 +21,17 @@ It features tour info, album era switching,billie-themed wordle and a comment se
 - **Backend**: .NET (C#) using ASP.NET Core
 - **Database**: MySQL
 - **Auth**: Simple role-based system
+
+- ### Run the Project
+
+1. Open the project folder.
+2. In one terminal, run the backend:
+
+```bash
+cd blohsh-backend
+dotnet run
+
+in another terminal
+cd frontend
+npm install
+npm start

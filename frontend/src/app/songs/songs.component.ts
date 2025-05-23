@@ -85,6 +85,8 @@ export class SongsComponent implements OnInit {
   
   
   fetchFavourites(): void {
+    if (!this.isBrowser) return;
+
     const user = localStorage.getItem('user');
     const userId = user ? JSON.parse(user).id : null;
   
@@ -107,6 +109,8 @@ export class SongsComponent implements OnInit {
   
 
   toggleFavourite(song: any): void {
+     if (!this.isBrowser) return;
+     
     const user = localStorage.getItem('user');
     const userId = user ? JSON.parse(user).id : null;
     if (!userId) return;

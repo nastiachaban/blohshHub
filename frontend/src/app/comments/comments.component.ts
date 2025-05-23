@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommentsService } from './comments.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
 
 @Component({
   selector: 'app-comments',
@@ -17,13 +20,16 @@ export class CommentsComponent implements OnInit {
   editContent: string = '';
   isAdmin: boolean = false;
 
+   private platformId = inject(PLATFORM_ID);
+
   constructor(private commentsService: CommentsService) {}
 
   ngOnInit(): void {
     this.loadComments();
 
+     if (isPlatformBrowser(this.platformId)) {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
-    this.isAdmin = user.role === 'admin';
+    this.isAdmin = user.role === 'admin';}
   }
 
   loadComments() {
@@ -33,6 +39,7 @@ export class CommentsComponent implements OnInit {
   }
 
   postComment() {
+    if (isPlatformBrowser(this.platformId)) {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     if (!this.newComment.trim()) return;
 
@@ -44,6 +51,7 @@ export class CommentsComponent implements OnInit {
       this.newComment = '';
       this.loadComments();
     });
+  }
   }
 
   cancel() {

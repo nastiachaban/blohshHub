@@ -1,6 +1,6 @@
 .container {
     display: flex;
-    justify-content: center; /* horizontally centers the main content */
+    justify-content: center; 
     align-items: center;
     padding: 32px;
     gap: 32px;

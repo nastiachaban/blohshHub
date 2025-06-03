@@ -11,6 +11,7 @@ import { FavouritesService } from '../favourites.service';
   templateUrl: './songs.component.html',
   styleUrls: ['./songs.component.css']
 })
+
 export class SongsComponent implements OnInit {
   songs: Song[] = [];
   favouritedSongs: string[] = [];

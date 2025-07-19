@@ -7,8 +7,12 @@ namespace blohsh_backend.Controllers
     [Route("api/comments")]
     public class CommentsController : ControllerBase
     {
-        private readonly string _connectionString = "server=localhost;user=root;password=nastia!2006;database=blohsh";
+        private readonly string _connectionString;
 
+        public CommentsController(IConfiguration config)
+        {
+            _connectionString = config.GetConnectionString("DefaultConnection");
+        }
         [HttpGet]
         public IActionResult GetComments()
         {

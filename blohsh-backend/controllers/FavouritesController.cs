@@ -8,7 +8,12 @@ namespace blohsh_backend.Controllers
     [Route("api/favourites")]
     public class FavouritesController : ControllerBase
     {
-        private readonly string _connStr = "server=localhost;user=root;password=nastia!2006;database=blohsh";
+         private readonly string _connectionString;
+
+        public FavouritesController(IConfiguration config)
+        {
+            _connectionString = config.GetConnectionString("DefaultConnection");
+        }
 
         [HttpPost("{userId}")]
         public IActionResult AddFavourite(int userId, [FromBody] JsonElement body)
@@ -18,7 +23,7 @@ namespace blohsh_backend.Controllers
             if (string.IsNullOrWhiteSpace(songName))
                 return BadRequest(new { error = "Missing song name" });
 
-            using var conn = new MySqlConnection(_connStr);
+            using var conn = new MySqlConnection(_connectionString);
             conn.Open();
 
             var cmd = new MySqlCommand("INSERT INTO favourites (user_id, song_name) VALUES (@uid, @name)", conn);
@@ -32,7 +37,7 @@ namespace blohsh_backend.Controllers
         [HttpDelete("{userId}/{songName}")]
         public IActionResult RemoveFavourite(int userId, string songName)
         {
-            using var conn = new MySqlConnection(_connStr);
+            using var conn = new MySqlConnection(_connectionString);
             conn.Open();
 
             var cmd = new MySqlCommand("DELETE FROM favourites WHERE user_id = @uid AND song_name = @name", conn);
@@ -46,7 +51,7 @@ namespace blohsh_backend.Controllers
         [HttpGet("{userId}")]
         public IActionResult GetFavourites(int userId)
         {
-            using var conn = new MySqlConnection(_connStr);
+            using var conn = new MySqlConnection(_connectionString);
             conn.Open();
 
             string query = @"

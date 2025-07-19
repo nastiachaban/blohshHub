@@ -8,7 +8,12 @@ namespace blohsh_backend.Controllers
     [Route("api/auth")]
     public class AuthController : ControllerBase
     {
-        private readonly string _connectionString = "server=localhost;user=root;password=nastia!2006;database=blohsh";
+        private readonly string _connectionString;
+
+        public AuthController(IConfiguration config)
+        {
+            _connectionString = config.GetConnectionString("DefaultConnection");
+        }
 
         [HttpPost("signup")]
         public IActionResult Signup([FromBody] User user)

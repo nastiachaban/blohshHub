@@ -7,12 +7,16 @@ namespace blohsh_backend.Controllers
     [Route("api/songs")]
     public class SongsController : ControllerBase
     {
-        private readonly string _connStr = "server=localhost;user=root;password=nastia!2006;database=blohsh";
+         private readonly string _connectionString;
 
+        public SongsController(IConfiguration config)
+        {
+            _connectionString = config.GetConnectionString("DefaultConnection");
+        }
         [HttpGet]
         public IActionResult GetSongs([FromQuery] string? album)
         {
-            using var conn = new MySqlConnection(_connStr);
+            using var conn = new MySqlConnection(_connectionString);
             conn.Open();
 
             string query = album != null

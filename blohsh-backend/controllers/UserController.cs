@@ -8,7 +8,12 @@ namespace blohsh_backend.Controllers
     [Route("api/users")]
     public class UsersController : ControllerBase
     {
-        private readonly string _connectionString = "server=localhost;user=root;password=nastia!2006;database=blohsh";
+        private readonly string _connectionString;
+
+        public UsersController(IConfiguration config)
+        {
+            _connectionString = config.GetConnectionString("DefaultConnection");
+        }
 
         [HttpGet("stats/{username}")]
         public IActionResult GetStats(string username)

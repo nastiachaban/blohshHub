@@ -24,7 +24,7 @@ export class CommentsComponent implements OnInit {
 
   constructor(private commentsService: CommentsService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {6
     this.loadComments();
 
      if (isPlatformBrowser(this.platformId)) {

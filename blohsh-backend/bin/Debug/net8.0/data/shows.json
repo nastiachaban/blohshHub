@@ -99,7 +99,7 @@
     },
     {
       "id": 15,
-      "date": "2025-06-04T19:00:00",
+      "date": "2025-06-06T19:00:00",
       "city": "Vienna",
       "country": "Austria",
       "arena": "Wiener Stadthalle"
@@ -236,5 +236,167 @@
       "city": "Dublin",
       "country": "Ireland",
       "arena": "3Arena"
+    },
+    {
+      "id": 35,
+      "date": "2025-08-16T19:00:00",
+      "city": "Saitama",
+      "country": "Japan",
+      "arena": "Saitama Super Arena"
+    },
+    {
+      "id": 36,
+      "date": "2025-08-17T19:00:00",
+      "city": "Saitama",
+      "country": "Japan",
+      "arena": "Saitama Super Arena"
+    },
+    {
+      "id": 37,
+      "date": "2025-10-09T19:00:00",
+      "city": "Miami",
+      "country": "United States",
+      "arena": "Kaseya Center"
+    },
+    {
+      "id": 38,
+      "date": "2025-10-11T19:00:00",
+      "city": "Miami",
+      "country": "United States",
+      "arena": "Kaseya Center"
+    },
+    {
+      "id": 39,
+      "date": "2025-10-12T19:00:00",
+      "city": "Orlando",
+      "country": "United States",
+      "arena": "Kia Center"
+    },
+    {
+      "id": 40,
+      "date": "2025-10-14T19:00:00",
+      "city": "Orlando",
+      "country": "United States",
+      "arena": "Kia Center"
+    },
+    {
+      "id": 41,
+      "date": "2025-10-16T19:00:00",
+      "city": "Raleigh",
+      "country": "United States",
+      "arena": "Lenovo Center"
+    },
+    {
+      "id": 42,
+      "date": "2025-10-17T19:00:00",
+      "city": "Raleigh",
+      "country": "United States",
+      "arena": "Lenovo Center"
+    },
+    {
+      "id": 43,
+      "date": "2025-10-19T19:00:00",
+      "city": "Charlotte",
+      "country": "United States",
+      "arena": "Spectrum Center"
+    },
+    {
+      "id": 44,
+      "date": "2025-10-20T19:00:00",
+      "city": "Charlotte",
+      "country": "United States",
+      "arena": "Spectrum Center"
+    },
+    {
+      "id": 45,
+      "date": "2025-10-23T19:00:00",
+      "city": "Philadelphia",
+      "country": "United States",
+      "arena": "Xfinity Mobile Arena"
+    },
+    {
+      "id": 46,
+      "date": "2025-10-25T19:00:00",
+      "city": "Elmont",
+      "country": "United States",
+      "arena": "UBS Arena"
+    },
+    {
+      "id": 47,
+      "date": "2025-10-26T19:00:00",
+      "city": "Elmont",
+      "country": "United States",
+      "arena": "UBS Arena"
+    },
+    {
+      "id": 48,
+      "date": "2025-11-07T19:00:00",
+      "city": "New Orleans",
+      "country": "United States",
+      "arena": "Smoothie King Center"
+    },
+    {
+      "id": 49,
+      "date": "2025-11-08T19:00:00",
+      "city": "New Orleans",
+      "country": "United States",
+      "arena": "Smoothie King Center"
+    },
+    {
+      "id": 50,
+      "date": "2025-11-10T19:00:00",
+      "city": "Tulsa",
+      "country": "United States",
+      "arena": "BOK Center"
+    },
+    {
+      "id": 51,
+      "date": "2025-11-11T19:00:00",
+      "city": "Tulsa",
+      "country": "United States",
+      "arena": "BOK Center"
+    },
+    {
+      "id": 52,
+      "date": "2025-11-13T19:00:00",
+      "city": "Austin",
+      "country": "United States",
+      "arena": "Moody Center"
+    },
+    {
+      "id": 53,
+      "date": "2025-11-14T19:00:00",
+      "city": "Austin",
+      "country": "United States",
+      "arena": "Moody Center"
+    },
+    {
+      "id": 54,
+      "date": "2025-11-18T19:00:00",
+      "city": "Phoenix",
+      "country": "United States",
+      "arena": "PHX Arena"
+    },
+    {
+      "id": 55,
+      "date": "2025-11-19T19:00:00",
+      "city": "Phoenix",
+      "country": "United States",
+      "arena": "PHX Arena"
+    },
+    {
+      "id": 56,
+      "date": "2025-11-22T19:00:00",
+      "city": "San Francisco",
+      "country": "United States",
+      "arena": "Chase Center"
+    },
+    {
+      "id": 57,
+      "date": "2025-11-23T19:00:00",
+      "city": "San Francisco",
+      "country": "United States",
+      "arena": "Chase Center"
     }
+
   ]

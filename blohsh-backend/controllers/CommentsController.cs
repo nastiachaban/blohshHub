@@ -15,11 +15,9 @@ namespace blohsh_backend.Controllers
             using var conn = new MySqlConnection(_connectionString);
             conn.Open();
 
-            var cmd = new MySqlCommand(@"
-                SELECT comments.*, users.role
-                FROM comments
-                JOIN users ON comments.user_id = users.id
-                ORDER BY comments.created_at DESC", conn);
+            var cmd = new MySqlCommand(@"SELECT comments.*, users.role FROM comments
+                                         JOIN users ON comments.user_id = users.id
+                                         ORDER BY comments.created_at DESC", conn);
 
             using var reader = cmd.ExecuteReader();
             var comments = new List<dynamic>();

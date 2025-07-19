@@ -36,7 +36,7 @@ It features tour info, album era switching,billie-themed wordle and a comment se
 - Find the `"ConnectionStrings"` section and update this line:
   
 ```json
-"DefaultConnection": "server=localhost;user=root;password=yourpassword;database=blohsh"
+"DefaultConnection": "server=localhost;user=yourusername;password=yourpassword;database=blohsh"
 ````
 
 2. In one terminal, run the backend:

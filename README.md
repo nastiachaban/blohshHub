@@ -24,7 +24,21 @@ It features tour info, album era switching,billie-themed wordle and a comment se
 
 ## Run the Project
 
-1. Open the project folder.
+1. MySQL Database Setup
+
+- Open MySQL Workbench
+- Create a new database called: `blohsh`
+- Open the file: `db/blohshSchema.sql`
+- Copy the entire contents of the file
+- Paste it into a new SQL tab in MySQL Workbench
+- Run the query to create the tables
+- Open: `blohsh-backend/appsettings.json`
+- Find the `"ConnectionStrings"` section and update this line:
+  
+```json
+"DefaultConnection": "server=localhost;user=yourusername;password=yourpassword;database=blohsh"
+````
+
 2. In one terminal, run the backend:
 
 ```bash
@@ -37,3 +51,4 @@ dotnet run
 cd frontend
 npm install
 npm start
+
